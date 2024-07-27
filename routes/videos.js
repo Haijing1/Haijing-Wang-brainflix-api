@@ -3,6 +3,8 @@ import express from "express"
 const router = express.Router();
 
 import fs from "fs";
+import { v4 as uuid } from "uuid";
+// import { title } from "process";
 
 
 router.get("/", (req, res) => {
@@ -32,5 +34,25 @@ router.get("/:videoId", (req, res) => {
     }
     res.send(foundVideo);
 });
+
+router.post("/", (req, res) => {
+    console.log("req.body", req.body);
+
+    const newVideo = {
+        id: uuid(),
+        title: req.body.title,
+        channel: req.body.channel,
+        image: "Upload-video-preview.jpg"
+    }
+
+    const videosBuffer = fs.readFileSync("./data/videos.json");
+    const videos = JSON.parse(videosBuffer);
+
+    videos.push(newVideo);
+    fs.writeFileSync("./data/videos.json", JSON.stringify(videos));
+    // console.log(newVideo);
+    res.send("post")
+});
+
 
 export default router;
