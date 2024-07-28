@@ -41,8 +41,15 @@ router.post("/", (req, res) => {
     const newVideo = {
         id: uuid(),
         title: req.body.title,
-        channel: req.body.channel,
-        image: "Upload-video-preview.jpg"
+        channel: "Haijing Wang",
+        image: "Upload-video-preview.jpg",
+        description: req.body.description,
+        views: "0",
+        likes: "0",
+        duration: "0:00",
+        video: "",
+        timestamp: Date.now(),
+        comments: []
     }
 
     const videosBuffer = fs.readFileSync("./data/videos.json");
@@ -56,3 +63,5 @@ router.post("/", (req, res) => {
 
 
 export default router;
+
+// channel: req.body.channel,
