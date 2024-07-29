@@ -3,9 +3,14 @@ import videoIdRouter from "./routes/videosRouter.js"
 import commentRouter from "./routes/commentsRouter.js"
 import fs from "fs";
 import cors from "cors"
+import 'dotenv/config'
 
 const app = express();
-const PORT = 8080;
+
+// process.env.CLINENT_URL
+
+const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
 
 
 app.use(cors());
